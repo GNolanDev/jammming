@@ -15,6 +15,7 @@ class App extends React.Component {
       { name: "Name 3", artist: "Artist 3", album: "Album 3", id: "id3" },
     ];
     this.addTrack = this.addTrack.bind(this);
+    this.removeTrack = this.removeTrack.bind(this);
   }
 
   addTrack(track) {
@@ -23,6 +24,13 @@ class App extends React.Component {
     }
     const newPlaylistTracks = this.state.playlistTracks;
     newPlaylistTracks.push(track);
+    this.setState({ playlistTracks = newPlaylistTracks });
+  }
+  
+  removeTrack(track) {
+    const newPlaylistTracks = this.state.playlistTracks.filter(
+      savedTrack => savedTrack.id !== track.id
+    );
     this.setState({ playlistTracks = newPlaylistTracks });
   }
 
@@ -38,10 +46,11 @@ class App extends React.Component {
             <SearchResults 
               results={this.state.searchResults}
               onAdd={this.addTrack}
-            />
+              />
             <Playlist
               playlistName={this.state.playlistName}
               playlistTracks={this.state.playlistTracks}
+              onRemove={this.removeTrack}
             />
           </div>
         </div>
