@@ -20,6 +20,10 @@ class App extends React.Component {
     this.search = this.search.bind(this);
   }
 
+  componentDidMount() {
+    Spotify.getAccessToken();
+  }
+
   addTrack(track) {
     if (
       this.state.playlistTracks.find((savedTrack) => savedTrack.id === track.id)
