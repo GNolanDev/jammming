@@ -23,7 +23,6 @@ const Spotify = {
   },
 
   savePlaylist(playlistName, trackUrisArray) {
-    debugger;
     if (!(playlistName && trackUrisArray.length)) {
       return;
     }
