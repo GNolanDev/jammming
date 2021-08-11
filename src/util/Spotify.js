@@ -22,7 +22,47 @@ const Spotify = {
     }
   },
 
+  savePlaylist(playlistName, trackUrisArray) {
+    debugger;
+    if (!(playlistName && trackUrisArray.length)) {
+      return;
+    }
+    const accessToken = this.getAccessToken();
+    const authheader = {
+      Authorization: "Bearer " + accessToken,
+    };
+
+    return fetch("https://api.spotify.com/v1/me", {
+      headers: authheader,
+    })
+      .then((response) => response.json())
+      .then((responseJSON) => {
+        // return user ID
+        return responseJSON.id;
+      })
+      .then((userID) =>
+        fetch(`https://api.spotify.com/v1/users/${userID}/playlists`, {
+          headers: authheader,
+          method: "POST",
+          body: JSON.stringify({ name: playlistName }),
+        })
+      )
+      .then((response) => response.json())
+      .then((responseJSON) => {
+        // return playlist id
+        return responseJSON.id;
+      })
+      .then((playlistID) =>
+        fetch(`https://api.spotify.com/v1/playlists/${playlistID}/tracks`, {
+          headers: authheader,
+          method: "POST",
+          body: JSON.stringify({ uris: trackUrisArray }),
+        })
+      );
+  },
+
   async search(searchTerm) {
+    userAccessToken = this.getAccessToken();
     return fetch(
       `https://api.spotify.com/v1/search?type=track&q=${searchTerm}`,
       {
