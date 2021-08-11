@@ -1,7 +1,9 @@
 let userAccessToken;
 const clientId = "447c9f46c7f14924b1029c7d7161d4b3";
 // const redirectUri = "http://localhost:3000/"; // for local hosting with 'npm start'
-const redirectUri = "http://GNolanDevJammming.surge.sh";
+//const redirectUri = "http://GNolanDevJammming.surge.sh";  // surge hosted deployment
+const redirectUri = "http://GNolanDevJammming.netlify.app";  // deployment on netlify
+
 
 const Spotify = {
   getAccessToken() {
