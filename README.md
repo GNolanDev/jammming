@@ -12,7 +12,7 @@ This was a good overview of how React single page apps are arranged, a chance to
 
 ## Requirements
 
-Hosted on [surge](http://gnolandevjammming.surge.sh/).
+Hosted on [surge](http://gnolandevjammming.surge.sh/), and [netlify](http://gnolandevappointmentplanner.netlify.app/).
 
 ## Contact
 
